@@ -1,0 +1,58 @@
+fprintf('Press 1 to select SCARA\n');
+fprintf('Press 2 to select Alpha II\n');
+fprintf('Press 3 to select Rhino XR3\n');
+fprintf('Press 4 to select Intelidex\n');
+n = input('Enter a number: ');
+switch (n)
+    
+    case 1
+        disp('You have chose SCARA')
+        n=4;
+        q=input('Enter 4 values of q with [ ] around them');
+        alpha=input('Enter 4 values of alpha with [ ] around them');
+        d=input('Enter 4 values of d with [ ] around them');
+        a=input('Enter 4 values of a with [ ] around them');
+        disp('Arm Equation: ');
+        L=ArmEquation(q,alpha,d,a,n);
+        disp(L);
+    case 2
+        disp('you have chose Alpha II')
+        n=5;
+        q=input('Enter 5 values of q with [ ] around them');
+        alpha=input('Enter 5 values of alpha with [ ] around them');
+        d=input('Enter 5 values of d with [ ] around them');
+        a=input('Enter 5 values of a with [ ] around them');
+        disp('Arm Equation: ');
+        L=ArmEquation(q,alpha,d,a,n);
+        disp(L);
+    case 3
+        disp('You have chose Rhino XR3')
+        n=5;
+        q=input('Enter 5 values of q with [ ] around them');
+        alpha=input('Enter 5 values of alpha with [ ] around them');
+        d=input('Enter 5 values of d with [ ] around them');
+        a=input('Enter 5 values of a with [ ] around them');
+        disp('Arm Equation: ');
+        L=ArmEquation(q,alpha,d,a,n);
+        disp(L);
+    case 4
+        disp('You have chose Intelidex')
+        n=6;
+        q=input('Enter 6 values of q with [ ] around them');
+        alpha=input('Enter 6 values of alpha with [ ] around them');
+        d=input('Enter 6 values of d with [ ] around them');
+        a=input('Enter 6 values of a with [ ] around them');
+        disp('Arm Equation: ');
+        L=ArmEquation(q,alpha,d,a,n);
+        disp(L);
+ end
+    function T=ArmEquation(q,alpha,d,a,n)
+        T=eye(4);
+        for i=1:n
+            t = [cosd(q(i)) -cosd(alpha(i))*sind(q(i)) sind(alpha(i))*sind(q(i)) a(i)*cosd(q(i));
+            sind(q(i)) cosd(alpha(i))*cosd(q(i)) -sind(alpha(i))*cosd(q(i)) a(i)*sind(q(i));
+            0 sind(alpha(i)) cosd(alpha(i)) d(i);
+            0 0 0 1];
+            T = T*t;
+        end
+    end
